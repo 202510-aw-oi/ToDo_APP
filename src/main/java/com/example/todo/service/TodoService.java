@@ -21,6 +21,7 @@ public class TodoService {
         todo.setTitle(form.getTitle());
         todo.setDetail(form.getDetail());
         todo.setType(form.getType());
+        todo.setDueDate(form.getDueDate());
         todoRepository.save(todo);
     }
 
@@ -43,6 +44,7 @@ public class TodoService {
         todo.setTitle(form.getTitle());
         todo.setDetail(form.getDetail());
         todo.setType(form.getType());
+        todo.setDueDate(form.getDueDate());
         todoRepository.save(todo);
     }
 }

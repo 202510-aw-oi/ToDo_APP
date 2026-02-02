@@ -6,6 +6,7 @@ public class TodoForm {
     private String title;
     private String detail;
     private String type;
+    private java.time.LocalDate dueDate;
 
     public Long getId() {
         return id;
@@ -45,5 +46,13 @@ public class TodoForm {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public java.time.LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(java.time.LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
 }

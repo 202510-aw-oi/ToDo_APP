@@ -9,6 +9,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "todos")
@@ -34,6 +35,9 @@ public class Todo {
 
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    @Column
+    private LocalDate dueDate;
 
     @PrePersist
     public void prePersist() {
@@ -101,5 +105,13 @@ public class Todo {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
 }
