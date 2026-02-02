@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>ToDo一覧</title>
+</head>
+<body>
+    <h1>ToDo一覧</h1>
+    <a th:href="@{/edit}">新規登録</a>
+
+    <p th:if="${#lists.isEmpty(todos)}">データはありません</p>
+
+    <table th:if="${!#lists.isEmpty(todos)}" border="1">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>タイトル</th>
+                <th>登録者</th>
+                <th>作成日</th>
+                <th>編集</th>
+                <th>削除</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="todo, stat : ${todos}">
+                <td th:text="${stat.count}">1</td>
+                <td th:text="${todo.title}">title</td>
+                <td th:text="${todo.author}">author</td>
+                <td th:text="${todo.createdAt}">2026-02-02T00:00</td>
+                <td>
+                    <a th:href="@{/edit/{id}(id=${todo.id})}">編集</a>
+                </td>
+                <td>
+                    <form th:action="@{/delete/{id}(id=${todo.id})}" method="post" onsubmit="return confirm('削除してよろしいですか？');">
+                        <button type="submit">削除</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

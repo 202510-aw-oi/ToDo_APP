@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>入力内容の確認</title>
+</head>
+<body>
+    <h1>入力内容の確認</h1>
+    <p>上記で登録して良いですか？</p>
+
+    <div>
+        <p>登録者: <span th:text="${todoForm.author}">author</span></p>
+        <p>タイトル: <span th:text="${todoForm.title}">title</span></p>
+        <p>詳細: <span th:text="${todoForm.detail}">detail</span></p>
+    </div>
+
+    <form th:action="@{/complete}" th:object="${todoForm}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{author}" />
+        <input type="hidden" th:field="*{title}" />
+        <input type="hidden" th:field="*{detail}" />
+        <div>
+            <button type="submit">登録</button>
+            <a th:href="${todoForm.id} != null ? @{/edit/{id}(id=${todoForm.id})} : @{/edit}">修正</a>
+        </div>
+    </form>
+</body>
+</html>
