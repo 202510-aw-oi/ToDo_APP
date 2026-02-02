@@ -11,7 +11,13 @@
 </head>
 <body>
     <header class="page-header">
-        <a class="home-link" th:href="@{/}">Home</a>
+        <a class="home-link" th:href="@{/}" aria-label="Home" title="Home">
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M7 3h8l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M15 3v4h4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M9 11h8M9 14h8M9 17h6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+        </a>
         <h1>入力内容の確認</h1>
     </header>
     <p>上記で登録して良いですか？</p>
