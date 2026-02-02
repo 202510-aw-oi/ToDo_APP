@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8" />
     <title>ToDo登録</title>
+    <style>
+        .page-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+        .page-header .home-link { display: inline-block; padding: 4px 8px; border: 1px solid #333; border-radius: 4px; text-decoration: none; }
+        .page-header h1 { margin: 0; font-size: 1.5rem; }
+    </style>
 </head>
 <body>
-    <h1>ToDo登録</h1>
+    <header class="page-header">
+        <a class="home-link" th:href="@{/}">Home</a>
+        <h1>ToDo登録</h1>
+    </header>
     <form th:action="@{/confirm}" th:object="${todoForm}" method="post">
         <input type="hidden" th:field="*{id}" />
         <table>
