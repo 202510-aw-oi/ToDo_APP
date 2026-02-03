@@ -33,7 +33,15 @@
             </tr>
             <tr>
                 <th>種類</th>
-                <td><input type="text" th:field="*{type}" /></td>
+                <td>
+                    <select th:field="*{type}">
+                        <option value="">-- 選択 --</option>
+                        <option value="Work">Work</option>
+                        <option value="Private">Private</option>
+                        <option value="Fitness">Fitness</option>
+                        <option value="Self-Dev">Self-Dev</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <th>締切日</th>
