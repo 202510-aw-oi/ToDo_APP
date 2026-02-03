@@ -7,6 +7,8 @@
         .page-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
         .page-header .home-link { display: inline-block; padding: 4px 8px; border: none; border-radius: 4px; text-decoration: none; }
         .page-header h1 { margin: 0; font-size: 1.5rem; }
+        .page-header .add-link { display: inline-flex; align-items: center; }
+        body > a { display: none; }
         .todo-title { width: 8em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .todo-author { width: 5em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
         .todo-type { width: 5em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
@@ -21,6 +23,12 @@
                 <path d="M7 3h8l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.5"/>
                 <path d="M15 3v4h4" fill="none" stroke="currentColor" stroke-width="1.5"/>
                 <path d="M9 11h8M9 14h8M9 17h6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+        </a>
+        <a class="add-link" th:href="@{/edit}" aria-label="新規登録" title="新規登録">
+            <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M12 8v8M8 12h8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
         </a>
         <h1>ToDo一覧</h1>
