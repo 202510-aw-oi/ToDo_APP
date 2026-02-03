@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
@@ -6,9 +6,8 @@
     <style>
         .page-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
         .page-header .home-link { display: inline-block; padding: 4px 8px; border: none; border-radius: 4px; text-decoration: none; }
-        .page-header h1 { margin: 0; font-size: 1.5rem; }
         .page-header .add-link { display: inline-flex; align-items: center; }
-        body > a { display: none; }
+        .page-header h1 { margin: 0; font-size: 1.5rem; }
         .todo-title { width: 8em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .todo-author { width: 5em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
         .todo-type { width: 5em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
@@ -33,9 +32,6 @@
         </a>
         <h1>ToDo一覧</h1>
     </header>
-    <a th:href="@{/edit}">新規登録</a>
-
-    <p th:if="${#lists.isEmpty(todos)}">データはありません</p>
 
     <table th:if="${!#lists.isEmpty(todos)}" border="1">
         <thead>
@@ -45,7 +41,7 @@
                 <th>登録者</th>
                 <th>作成日</th>
                 <th>種類</th>
-                <th>締切日</th>
+                <th>期限日</th>
                 <th>詳細</th>
                 <th>編集</th>
                 <th>削除</th>
@@ -57,7 +53,15 @@
                 <td class="todo-title" th:text="${todo.title}" th:title="${todo.title}">title</td>
                 <td class="todo-author" th:text="${todo.author}" th:title="${todo.author}">author</td>
                 <td th:text="${#temporals.format(todo.createdAt, 'yyyy/MM/dd')}">2026/02/02</td>
-                <td class="todo-type" th:text="${todo.type}" th:title="${todo.type}">type</td>
+                <td class="todo-type">
+                    <select disabled>
+                        <option value="" th:selected="${todo.type == null or todo.type == ''}">-- 選択 --</option>
+                        <option value="Work" th:selected="${todo.type == 'Work'}">Work</option>
+                        <option value="Private" th:selected="${todo.type == 'Private'}">Private</option>
+                        <option value="Fitness" th:selected="${todo.type == 'Fitness'}">Fitness</option>
+                        <option value="Self-Dev" th:selected="${todo.type == 'Self-Dev'}">Self-Dev</option>
+                    </select>
+                </td>
                 <td th:text="${#temporals.format(todo.dueDate, 'yyyy/MM/dd')}">2026/02/02</td>
                 <td class="todo-detail" th:text="${todo.detail}" th:title="${todo.detail}">detail</td>
                 <td>
