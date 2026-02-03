@@ -47,7 +47,7 @@
                 <td th:text="${stat.count}">1</td>
                 <td class="todo-title" th:text="${todo.title}" th:title="${todo.title}">title</td>
                 <td class="todo-author" th:text="${todo.author}" th:title="${todo.author}">author</td>
-                <td th:text="${#temporals.format(todo.createdAt, 'yyyy/MM/dd HH:mm')}">2026/02/02 00:00</td>
+                <td th:text="${#temporals.format(todo.createdAt, 'yyyy/MM/dd')}">2026/02/02</td>
                 <td class="todo-type" th:text="${todo.type}" th:title="${todo.type}">type</td>
                 <td th:text="${#temporals.format(todo.dueDate, 'yyyy/MM/dd')}">2026/02/02</td>
                 <td class="todo-detail" th:text="${todo.detail}" th:title="${todo.detail}">detail</td>
