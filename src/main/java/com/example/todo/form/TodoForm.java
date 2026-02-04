@@ -5,7 +5,9 @@ public class TodoForm {
     private String author;
     private String title;
     private String detail;
+    private String description;
     private String type;
+    private Integer priority;
     private java.time.LocalDate dueDate;
 
     public Long getId() {
@@ -40,12 +42,28 @@ public class TodoForm {
         this.detail = detail;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
     }
 
     public java.time.LocalDate getDueDate() {

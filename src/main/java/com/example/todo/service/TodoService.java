@@ -20,7 +20,9 @@ public class TodoService {
         todo.setAuthor(form.getAuthor());
         todo.setTitle(form.getTitle());
         todo.setDetail(form.getDetail());
+        todo.setDescription(form.getDescription());
         todo.setType(form.getType());
+        todo.setPriority(form.getPriority());
         todo.setDueDate(form.getDueDate());
         todoRepository.save(todo);
     }
@@ -43,7 +45,9 @@ public class TodoService {
         todo.setAuthor(form.getAuthor());
         todo.setTitle(form.getTitle());
         todo.setDetail(form.getDetail());
+        todo.setDescription(form.getDescription());
         todo.setType(form.getType());
+        todo.setPriority(form.getPriority());
         todo.setDueDate(form.getDueDate());
         todoRepository.save(todo);
     }

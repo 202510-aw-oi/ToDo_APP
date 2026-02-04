@@ -41,8 +41,10 @@
                 <th>登録者</th>
                 <th>作成日</th>
                 <th>種類</th>
+                <th>優先度</th>
                 <th>期限日</th>
                 <th>詳細</th>
+                <th>説明</th>
                 <th>編集</th>
                 <th>削除</th>
             </tr>
@@ -54,8 +56,10 @@
                 <td class="todo-author" th:text="${todo.author}" th:title="${todo.author}">author</td>
                 <td th:text="${#temporals.format(todo.createdAt, 'yyyy/MM/dd')}">2026/02/02</td>
                 <td class="todo-type" th:text="${todo.type}" th:title="${todo.type}">type</td>
+                <td th:text="${todo.priority}">2</td>
                 <td th:text="${#temporals.format(todo.dueDate, 'yyyy/MM/dd')}">2026/02/02</td>
                 <td class="todo-detail" th:text="${todo.detail}" th:title="${todo.detail}">detail</td>
+                <td class="todo-detail" th:text="${todo.description}" th:title="${todo.description}">description</td>
                 <td>
                     <a th:href="@{/edit/{id}(id=${todo.id})}">編集</a>
                 </td>

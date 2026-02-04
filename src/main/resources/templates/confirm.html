@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
@@ -20,14 +20,16 @@
         </a>
         <h1>入力内容の確認</h1>
     </header>
-    <p>上記で登録して良いですか？</p>
+    <p>以下の内容で登録してよろしいですか？</p>
 
     <div>
         <p>登録者: <span th:text="${todoForm.author}">author</span></p>
         <p>タイトル: <span th:text="${todoForm.title}">title</span></p>
         <p>種類: <span th:text="${todoForm.type}">type</span></p>
-        <p>締切日: <span th:text="${todoForm.dueDate}">2026-02-02</span></p>
+        <p>優先度: <span th:text="${todoForm.priority}">2</span></p>
+        <p>期限日: <span th:text="${todoForm.dueDate}">2026-02-02</span></p>
         <p>詳細: <span th:text="${todoForm.detail}">detail</span></p>
+        <p>詳細説明: <span th:text="${todoForm.description}">description</span></p>
     </div>
 
     <form th:action="@{/complete}" th:object="${todoForm}" method="post">
@@ -35,11 +37,13 @@
         <input type="hidden" th:field="*{author}" />
         <input type="hidden" th:field="*{title}" />
         <input type="hidden" th:field="*{type}" />
+        <input type="hidden" th:field="*{priority}" />
         <input type="hidden" th:field="*{dueDate}" />
         <input type="hidden" th:field="*{detail}" />
+        <input type="hidden" th:field="*{description}" />
         <div>
             <button type="submit">登録</button>
-            <a th:href="${todoForm.id} != null ? @{/edit/{id}(id=${todoForm.id})} : @{/edit}">修正</a>
+            <a th:href="${todoForm.id} != null ? @{/edit/{id}(id=${todoForm.id})} : @{/edit}">戻る</a>
         </div>
     </form>
 </body>
