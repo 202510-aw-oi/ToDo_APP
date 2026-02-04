@@ -25,7 +25,9 @@
         <p>登録者: <span th:text="${todoForm.author}">author</span></p>
         <p>タイトル: <span th:text="${todoForm.title}">title</span></p>
         <p>種類: <span th:text="${todoForm.type}">type</span></p>
-        <p>優先度: <span th:text="${todoForm.priority}">2</span></p>
+        <p>優先度:
+            <span th:text="${todoForm.priority == 1 ? 'HIGH' : (todoForm.priority == 2 ? 'MEDIUM' : 'LOW')}">MEDIUM</span>
+        </p>
         <p>期限日: <span th:text="${todoForm.dueDate}">2026-02-02</span></p>
         <p>詳細: <span th:text="${todoForm.detail}">detail</span></p>
     </div>
