@@ -17,6 +17,7 @@
         .todo-due-date { width: 8em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
         .todo-detail { width: 20em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .todo-edit { width: 3em; text-align: center; }
+        .todo-delete { width: 3em; text-align: center; }
     </style>
 </head>
 <body>
@@ -50,7 +51,7 @@
                 <th>期限日</th>
                 <th>詳細</th>
                 <th class="todo-edit">編集</th>
-                <th>削除</th>
+                <th class="todo-delete">削除</th>
             </tr>
         </thead>
         <tbody>
@@ -69,7 +70,7 @@
                 <td class="todo-edit">
                     <a th:href="@{/edit/{id}(id=${todo.id})}">編集</a>
                 </td>
-                <td>
+                <td class="todo-delete">
                     <form th:action="@{/delete/{id}(id=${todo.id})}" method="post" onsubmit="return confirm('削除してよろしいですか？');">
                         <button type="submit">削除</button>
                     </form>
