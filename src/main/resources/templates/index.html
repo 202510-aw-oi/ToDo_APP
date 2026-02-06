@@ -36,6 +36,7 @@
     <table th:if="${!#lists.isEmpty(todos)}" border="1">
         <thead>
             <tr>
+                <th>☑</th>
                 <th>No</th>
                 <th>タイトル</th>
                 <th>登録者</th>
@@ -50,6 +51,9 @@
         </thead>
         <tbody>
             <tr th:each="todo, stat : ${todos}">
+                <td>
+                    <input type="checkbox" th:name="${'todoCheck' + stat.count}" th:value="${todo.id}" />
+                </td>
                 <td th:text="${stat.count}">1</td>
                 <td class="todo-title" th:text="${todo.title}" th:title="${todo.title}">title</td>
                 <td class="todo-author" th:text="${todo.author}" th:title="${todo.author}">author</td>
