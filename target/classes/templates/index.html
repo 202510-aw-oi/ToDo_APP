@@ -14,6 +14,7 @@
         .todo-type select { width: 100%; text-align: center; text-align-last: center; }
         .todo-priority { width: 5em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
         .todo-created-at { width: 8em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
+        .todo-due-date { width: 8em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
         .todo-detail { width: 20em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     </style>
 </head>
@@ -62,7 +63,7 @@
                 <td class="todo-created-at" th:text="${#temporals.format(todo.createdAt, 'yyyy/MM/dd')}">2026/02/02</td>
                 <td class="todo-type" th:text="${todo.type}" th:title="${todo.type}">type</td>
                 <td class="todo-priority" th:text="${todo.priority == 1 ? 'HIGH' : (todo.priority == 2 ? 'MEDIUM' : 'LOW')}">MEDIUM</td>
-                <td th:text="${#temporals.format(todo.dueDate, 'yyyy/MM/dd')}">2026/02/02</td>
+                <td class="todo-due-date" th:text="${#temporals.format(todo.dueDate, 'yyyy/MM/dd')}">2026/02/02</td>
                 <td class="todo-detail" th:text="${todo.detail}" th:title="${todo.detail}">detail</td>
                 <td>
                     <a th:href="@{/edit/{id}(id=${todo.id})}">編集</a>
