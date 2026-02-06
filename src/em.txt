@@ -1,0 +1,10 @@
+//ToDo一覧をem単位で教えて//
+
+//ToDo一覧（index.html）で em 指定されている横幅は以下です。//
+
+//タイトル: 8em (.todo-title)//
+//登録者: 5em (.todo-author)//
+//種類: 5em (.todo-type)//
+//詳細: 20em (.todo-detail)//
+
+//他の列（No、作成日、優先度、期限日、編集、削除、☑）は em 指定なしです。//
