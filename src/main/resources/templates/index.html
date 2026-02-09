@@ -8,6 +8,10 @@
         .page-header .home-link { display: inline-block; padding: 4px 8px; border: none; border-radius: 4px; text-decoration: none; }
         .page-header .add-link { display: inline-flex; align-items: center; }
         .page-header h1 { margin: 0; font-size: 1.5rem; }
+        .search-bar { display: flex; align-items: center; gap: 8px; margin: 8px 0 8px; }
+        .search-bar input[type="text"] { width: 240px; padding: 4px 8px; }
+        .clear-link { text-decoration: none; padding: 4px 8px; border: 1px solid #ccc; border-radius: 4px; }
+        .search-meta { margin: 0 0 12px; color: #555; }
         .todo-title { width: 8em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .todo-author { width: 5em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
         .todo-type { width: 5em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
@@ -37,6 +41,13 @@
         </a>
         <h1>ToDo一覧</h1>
     </header>
+
+    <form class="search-bar" th:action="@{/}" method="get">
+        <input type="text" name="keyword" placeholder="タイトル検索" th:value="${keyword}" />
+        <button type="submit">検索</button>
+        <a class="clear-link" th:href="@{/}" th:if="${isSearching}">クリア</a>
+    </form>
+    <div class="search-meta">検索結果: <span th:text="${count}">0</span>件</div>
 
     <table th:if="${!#lists.isEmpty(todos)}" border="1">
         <thead>

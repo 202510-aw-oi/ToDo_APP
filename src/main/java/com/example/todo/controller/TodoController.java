@@ -1,4 +1,4 @@
-package com.example.todo.controller;
+﻿package com.example.todo.controller;
 
 import com.example.todo.form.TodoForm;
 import com.example.todo.service.TodoService;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -22,9 +23,13 @@ public class TodoController {
     }
 
     @GetMapping("/")
-    public String index(Model model) {
-        List<Todo> todos = todoService.findAll();
+    public String index(@RequestParam(name = "keyword", required = false) String keyword, Model model) {
+        List<Todo> todos = todoService.searchByTitle(keyword);
+        long count = todoService.countByTitle(keyword);
         model.addAttribute("todos", todos);
+        model.addAttribute("keyword", keyword == null ? "" : keyword);
+        model.addAttribute("count", count);
+        model.addAttribute("isSearching", keyword != null && !keyword.trim().isEmpty());
         return "index";
     }
 

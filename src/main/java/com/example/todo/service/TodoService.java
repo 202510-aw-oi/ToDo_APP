@@ -1,7 +1,8 @@
-package com.example.todo.service;
+﻿package com.example.todo.service;
 
 import com.example.todo.entity.Todo;
 import com.example.todo.form.TodoForm;
+import com.example.todo.mapper.TodoMapper;
 import com.example.todo.repository.TodoRepository;
 import java.util.List;
 import java.util.Optional;
@@ -10,9 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class TodoService {
     private final TodoRepository todoRepository;
+    private final TodoMapper todoMapper;
 
-    public TodoService(TodoRepository todoRepository) {
+    public TodoService(TodoRepository todoRepository, TodoMapper todoMapper) {
         this.todoRepository = todoRepository;
+        this.todoMapper = todoMapper;
     }
 
     public void save(TodoForm form) {
@@ -35,6 +38,14 @@ public class TodoService {
         return todoRepository.findAllByOrderByCreatedAtDesc();
     }
 
+    public List<Todo> searchByTitle(String keyword) {
+        return todoMapper.selectByTitleLike(normalizeKeyword(keyword));
+    }
+
+    public long countByTitle(String keyword) {
+        return todoMapper.countByTitleLike(normalizeKeyword(keyword));
+    }
+
     public void delete(Long id) {
         todoRepository.deleteById(id);
     }
@@ -50,5 +61,13 @@ public class TodoService {
         todo.setPriority(form.getPriority());
         todo.setDueDate(form.getDueDate());
         todoRepository.save(todo);
+    }
+
+    private String normalizeKeyword(String keyword) {
+        if (keyword == null) {
+            return null;
+        }
+        String trimmed = keyword.trim();
+        return trimmed.isEmpty() ? null : trimmed;
     }
 }
