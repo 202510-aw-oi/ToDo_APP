@@ -45,7 +45,13 @@
     <form class="search-bar" th:action="@{/}" method="get">
         <label>
             種類:
-            <input type="text" name="type" placeholder="種類" th:value="${type}" />
+            <select name="type">
+                <option value="" th:selected="${type == ''}">未選択</option>
+                <option value="Work" th:selected="${type == 'Work'}">Work</option>
+                <option value="Private" th:selected="${type == 'Private'}">Private</option>
+                <option value="Fitness" th:selected="${type == 'Fitness'}">Fitness</option>
+                <option value="Self-Dev" th:selected="${type == 'Self-Dev'}">Self-Dev</option>
+            </select>
         </label>
         <label>
             優先度:
