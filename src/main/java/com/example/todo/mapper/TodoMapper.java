@@ -7,6 +7,12 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface TodoMapper {
-    List<Todo> selectByTitleLike(@Param("keyword") String keyword);
-    long countByTitleLike(@Param("keyword") String keyword);
+    List<Todo> selectByCondition(
+            @Param("field") String field,
+            @Param("keyword") String keyword,
+            @Param("date") java.time.LocalDate date);
+    long countByCondition(
+            @Param("field") String field,
+            @Param("keyword") String keyword,
+            @Param("date") java.time.LocalDate date);
 }

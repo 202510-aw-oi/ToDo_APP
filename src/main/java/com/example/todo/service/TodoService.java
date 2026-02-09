@@ -4,6 +4,8 @@ import com.example.todo.entity.Todo;
 import com.example.todo.form.TodoForm;
 import com.example.todo.mapper.TodoMapper;
 import com.example.todo.repository.TodoRepository;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
@@ -38,12 +40,24 @@ public class TodoService {
         return todoRepository.findAllByOrderByCreatedAtDesc();
     }
 
-    public List<Todo> searchByTitle(String keyword) {
-        return todoMapper.selectByTitleLike(normalizeKeyword(keyword));
+    public List<Todo> searchByCondition(String field, String keyword) {
+        String normalizedField = normalizeField(field);
+        String normalizedKeyword = normalizeKeyword(keyword);
+        LocalDate date = parseDateIfNeeded(normalizedField, normalizedKeyword);
+        if (isDateField(normalizedField) && normalizedKeyword != null && date == null) {
+            return List.of();
+        }
+        return todoMapper.selectByCondition(normalizedField, normalizedKeyword, date);
     }
 
-    public long countByTitle(String keyword) {
-        return todoMapper.countByTitleLike(normalizeKeyword(keyword));
+    public long countByCondition(String field, String keyword) {
+        String normalizedField = normalizeField(field);
+        String normalizedKeyword = normalizeKeyword(keyword);
+        LocalDate date = parseDateIfNeeded(normalizedField, normalizedKeyword);
+        if (isDateField(normalizedField) && normalizedKeyword != null && date == null) {
+            return 0;
+        }
+        return todoMapper.countByCondition(normalizedField, normalizedKeyword, date);
     }
 
     public void delete(Long id) {
@@ -69,5 +83,28 @@ public class TodoService {
         }
         String trimmed = keyword.trim();
         return trimmed.isEmpty() ? null : trimmed;
+    }
+
+    private String normalizeField(String field) {
+        if (field == null) {
+            return null;
+        }
+        String trimmed = field.trim();
+        return trimmed.isEmpty() ? null : trimmed;
+    }
+
+    private boolean isDateField(String field) {
+        return "createdAt".equals(field) || "dueDate".equals(field);
+    }
+
+    private LocalDate parseDateIfNeeded(String field, String keyword) {
+        if (!isDateField(field) || keyword == null) {
+            return null;
+        }
+        try {
+            return LocalDate.parse(keyword);
+        } catch (DateTimeParseException ex) {
+            return null;
+        }
     }
 }
