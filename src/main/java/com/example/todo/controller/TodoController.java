@@ -24,16 +24,18 @@ public class TodoController {
 
     @GetMapping("/")
     public String index(
-            @RequestParam(name = "field", required = false) String field,
-            @RequestParam(name = "keyword", required = false) String keyword,
+            @RequestParam(name = "type", required = false) String type,
+            @RequestParam(name = "priority", required = false) String priority,
             Model model) {
-        List<Todo> todos = todoService.searchByCondition(field, keyword);
-        long count = todoService.countByCondition(field, keyword);
+        List<Todo> todos = todoService.searchByFilters(type, priority);
+        long count = todoService.countByFilters(type, priority);
         model.addAttribute("todos", todos);
-        model.addAttribute("field", field == null ? "title" : field);
-        model.addAttribute("keyword", keyword == null ? "" : keyword);
+        model.addAttribute("type", type == null ? "" : type);
+        model.addAttribute("priority", priority == null ? "" : priority);
         model.addAttribute("count", count);
-        model.addAttribute("isSearching", keyword != null && !keyword.trim().isEmpty());
+        model.addAttribute("isSearching",
+                (type != null && !type.trim().isEmpty())
+                        || (priority != null && !priority.trim().isEmpty()));
         return "index";
     }
 

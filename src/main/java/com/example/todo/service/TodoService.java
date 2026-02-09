@@ -4,8 +4,6 @@ import com.example.todo.entity.Todo;
 import com.example.todo.form.TodoForm;
 import com.example.todo.mapper.TodoMapper;
 import com.example.todo.repository.TodoRepository;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
@@ -40,24 +38,22 @@ public class TodoService {
         return todoRepository.findAllByOrderByCreatedAtDesc();
     }
 
-    public List<Todo> searchByCondition(String field, String keyword) {
-        String normalizedField = normalizeField(field);
-        String normalizedKeyword = normalizeKeyword(keyword);
-        LocalDate date = parseDateIfNeeded(normalizedField, normalizedKeyword);
-        if (isDateField(normalizedField) && normalizedKeyword != null && date == null) {
+    public List<Todo> searchByFilters(String type, String priorityText) {
+        String normalizedType = normalizeText(type);
+        Integer priority = parsePriority(priorityText);
+        if (priorityText != null && !priorityText.trim().isEmpty() && priority == null) {
             return List.of();
         }
-        return todoMapper.selectByCondition(normalizedField, normalizedKeyword, date);
+        return todoMapper.selectByFilters(normalizedType, priority);
     }
 
-    public long countByCondition(String field, String keyword) {
-        String normalizedField = normalizeField(field);
-        String normalizedKeyword = normalizeKeyword(keyword);
-        LocalDate date = parseDateIfNeeded(normalizedField, normalizedKeyword);
-        if (isDateField(normalizedField) && normalizedKeyword != null && date == null) {
+    public long countByFilters(String type, String priorityText) {
+        String normalizedType = normalizeText(type);
+        Integer priority = parsePriority(priorityText);
+        if (priorityText != null && !priorityText.trim().isEmpty() && priority == null) {
             return 0;
         }
-        return todoMapper.countByCondition(normalizedField, normalizedKeyword, date);
+        return todoMapper.countByFilters(normalizedType, priority);
     }
 
     public void delete(Long id) {
@@ -85,25 +81,21 @@ public class TodoService {
         return trimmed.isEmpty() ? null : trimmed;
     }
 
-    private String normalizeField(String field) {
-        if (field == null) {
+    private String normalizeText(String value) {
+        if (value == null) {
             return null;
         }
-        String trimmed = field.trim();
+        String trimmed = value.trim();
         return trimmed.isEmpty() ? null : trimmed;
     }
 
-    private boolean isDateField(String field) {
-        return "createdAt".equals(field) || "dueDate".equals(field);
-    }
-
-    private LocalDate parseDateIfNeeded(String field, String keyword) {
-        if (!isDateField(field) || keyword == null) {
+    private Integer parsePriority(String value) {
+        if (value == null || value.trim().isEmpty()) {
             return null;
         }
         try {
-            return LocalDate.parse(keyword);
-        } catch (DateTimeParseException ex) {
+            return Integer.valueOf(value.trim());
+        } catch (NumberFormatException ex) {
             return null;
         }
     }

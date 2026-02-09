@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.todo.mapper.TodoMapper">
-    <select id="selectByCondition" resultType="com.example.todo.entity.Todo">
+    <select id="selectByFilters" resultType="com.example.todo.entity.Todo">
         SELECT
             id,
             author,
@@ -16,55 +16,27 @@
             updated_at,
             due_date
         FROM todos
-        <where>
-            <choose>
-                <when test="field == 'title' and keyword != null and keyword != ''">
-                    title LIKE CONCAT('%', #{keyword}, '%')
-                </when>
-                <when test="field == 'author' and keyword != null and keyword != ''">
-                    author LIKE CONCAT('%', #{keyword}, '%')
-                </when>
-                <when test="field == 'createdAt' and date != null">
-                    created_at >= #{date, jdbcType=DATE} AND created_at &lt; DATEADD('DAY', 1, #{date, jdbcType=DATE})
-                </when>
-                <when test="field == 'type' and keyword != null and keyword != ''">
-                    type = #{keyword}
-                </when>
-                <when test="field == 'priority' and keyword != null and keyword != ''">
-                    priority = #{keyword}
-                </when>
-                <when test="field == 'dueDate' and date != null">
-                    due_date = #{date, jdbcType=DATE}
-                </when>
-            </choose>
-        </where>
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="type != null and type != ''">
+                AND type = #{type}
+            </if>
+            <if test="priority != null">
+                AND priority = #{priority}
+            </if>
+        </trim>
         ORDER BY created_at DESC
     </select>
 
-    <select id="countByCondition" resultType="long">
+    <select id="countByFilters" resultType="long">
         SELECT COUNT(*)
         FROM todos
-        <where>
-            <choose>
-                <when test="field == 'title' and keyword != null and keyword != ''">
-                    title LIKE CONCAT('%', #{keyword}, '%')
-                </when>
-                <when test="field == 'author' and keyword != null and keyword != ''">
-                    author LIKE CONCAT('%', #{keyword}, '%')
-                </when>
-                <when test="field == 'createdAt' and date != null">
-                    created_at >= #{date, jdbcType=DATE} AND created_at &lt; DATEADD('DAY', 1, #{date, jdbcType=DATE})
-                </when>
-                <when test="field == 'type' and keyword != null and keyword != ''">
-                    type = #{keyword}
-                </when>
-                <when test="field == 'priority' and keyword != null and keyword != ''">
-                    priority = #{keyword}
-                </when>
-                <when test="field == 'dueDate' and date != null">
-                    due_date = #{date, jdbcType=DATE}
-                </when>
-            </choose>
-        </where>
+        <trim prefix="WHERE" prefixOverrides="AND |OR ">
+            <if test="type != null and type != ''">
+                AND type = #{type}
+            </if>
+            <if test="priority != null">
+                AND priority = #{priority}
+            </if>
+        </trim>
     </select>
 </mapper>

@@ -43,11 +43,19 @@
     </header>
 
     <form class="search-bar" th:action="@{/}" method="get">
-        <select name="field">
-            <option value="type" th:selected="${field == 'type'}">種類検索</option>
-            <option value="priority" th:selected="${field == 'priority'}">優先度検索</option>
-        </select>
-        <input type="text" name="keyword" placeholder="キーワード" th:value="${keyword}" />
+        <label>
+            種類:
+            <input type="text" name="type" placeholder="種類" th:value="${type}" />
+        </label>
+        <label>
+            優先度:
+            <select name="priority">
+                <option value="" th:selected="${priority == ''}">未選択</option>
+                <option value="1" th:selected="${priority == '1'}">HIGH</option>
+                <option value="2" th:selected="${priority == '2'}">MEDIUM</option>
+                <option value="3" th:selected="${priority == '3'}">LOW</option>
+            </select>
+        </label>
         <button type="submit">検索</button>
         <a class="clear-link" th:href="@{/}" th:if="${isSearching}">クリア</a>
     </form>
