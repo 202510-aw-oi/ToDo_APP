@@ -9,7 +9,8 @@ import org.apache.ibatis.annotations.Param;
 public interface TodoMapper {
     List<Todo> selectByFilters(
             @Param("type") String type,
-            @Param("priority") Integer priority);
+            @Param("priority") Integer priority,
+            @Param("sort") String sort);
     long countByFilters(
             @Param("type") String type,
             @Param("priority") Integer priority);

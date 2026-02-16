@@ -172,6 +172,14 @@
                 <option value="3" th:selected="${priority == '3'}">LOW</option>
             </select>
         </label>
+        <label>
+            期限:
+            <select name="sort">
+                <option value="" th:selected="${sort == ''}">未選択</option>
+                <option value="due_asc" th:selected="${sort == 'due_asc'}">近い順</option>
+                <option value="due_desc" th:selected="${sort == 'due_desc'}">遅い順</option>
+            </select>
+        </label>
         <button type="submit">検索</button>
         <a class="clear-link" th:href="@{/}" th:if="${isSearching}">クリア</a>
     </form>

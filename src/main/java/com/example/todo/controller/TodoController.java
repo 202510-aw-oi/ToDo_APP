@@ -26,16 +26,19 @@ public class TodoController {
     public String index(
             @RequestParam(name = "type", required = false) String type,
             @RequestParam(name = "priority", required = false) String priority,
+            @RequestParam(name = "sort", required = false) String sort,
             Model model) {
-        List<Todo> todos = todoService.searchByFilters(type, priority);
+        List<Todo> todos = todoService.searchByFilters(type, priority, sort);
         long count = todoService.countByFilters(type, priority);
         model.addAttribute("todos", todos);
         model.addAttribute("type", type == null ? "" : type);
         model.addAttribute("priority", priority == null ? "" : priority);
+        model.addAttribute("sort", sort == null ? "" : sort);
         model.addAttribute("count", count);
         model.addAttribute("isSearching",
                 (type != null && !type.trim().isEmpty())
-                        || (priority != null && !priority.trim().isEmpty()));
+                        || (priority != null && !priority.trim().isEmpty())
+                        || (sort != null && !sort.trim().isEmpty()));
         return "index";
     }
 

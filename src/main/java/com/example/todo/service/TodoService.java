@@ -39,13 +39,14 @@ public class TodoService {
         return todoRepository.findAllByOrderByCreatedAtDesc();
     }
 
-    public List<Todo> searchByFilters(String type, String priorityText) {
+    public List<Todo> searchByFilters(String type, String priorityText, String sort) {
         String normalizedType = normalizeText(type);
         Integer priority = parsePriority(priorityText);
         if (priorityText != null && !priorityText.trim().isEmpty() && priority == null) {
             return List.of();
         }
-        return todoMapper.selectByFilters(normalizedType, priority);
+        String normalizedSort = normalizeSort(sort);
+        return todoMapper.selectByFilters(normalizedType, priority, normalizedSort);
     }
 
     public long countByFilters(String type, String priorityText) {
@@ -100,5 +101,16 @@ public class TodoService {
         } catch (NumberFormatException ex) {
             return null;
         }
+    }
+
+    private String normalizeSort(String value) {
+        if (value == null) {
+            return null;
+        }
+        String trimmed = value.trim();
+        if ("due_asc".equals(trimmed) || "due_desc".equals(trimmed)) {
+            return trimmed;
+        }
+        return null;
     }
 }
