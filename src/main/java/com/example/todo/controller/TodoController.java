@@ -61,6 +61,7 @@ public class TodoController {
         form.setType(todo.getType());
         form.setPriority(todo.getPriority());
         form.setDueDate(todo.getDueDate());
+        form.setAttachmentUrl(todo.getAttachmentUrl());
         model.addAttribute("todoForm", form);
         return "edit";
     }

@@ -9,6 +9,7 @@ public class TodoForm {
     private String type;
     private Integer priority;
     private java.time.LocalDate dueDate;
+    private String attachmentUrl;
 
     public Long getId() {
         return id;
@@ -72,5 +73,13 @@ public class TodoForm {
 
     public void setDueDate(java.time.LocalDate dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public String getAttachmentUrl() {
+        return attachmentUrl;
+    }
+
+    public void setAttachmentUrl(String attachmentUrl) {
+        this.attachmentUrl = attachmentUrl;
     }
 }

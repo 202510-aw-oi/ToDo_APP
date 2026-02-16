@@ -114,6 +114,14 @@
             text-overflow: ellipsis;
         }
 
+        .todo-attachment {
+            width: 10em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+        }
+
         .todo-edit {
             width: 3em;
             text-align: center;
@@ -181,6 +189,7 @@
                 <th>優先度</th>
                 <th>期限日</th>
                 <th>詳細</th>
+                <th>添付</th>
                 <th class="todo-edit">編集</th>
                 <th class="todo-delete">削除</th>
             </tr>
@@ -199,6 +208,10 @@
                     th:text="${todo.priority == 1 ? 'HIGH' : (todo.priority == 2 ? 'MEDIUM' : 'LOW')}">MEDIUM</td>
                 <td class="todo-due-date" th:text="${#temporals.format(todo.dueDate, 'yyyy/MM/dd')}">2026/02/02</td>
                 <td class="todo-detail" th:text="${todo.detail}" th:title="${todo.detail}">detail</td>
+                <td class="todo-attachment">
+                    <a th:if="${todo.attachmentUrl != null and !#strings.isEmpty(todo.attachmentUrl)}"
+                        th:href="${todo.attachmentUrl}" target="_blank" rel="noopener">開く</a>
+                </td>
                 <td class="todo-edit">
                     <a th:href="@{/edit/{id}(id=${todo.id})}">編集</a>
                 </td>

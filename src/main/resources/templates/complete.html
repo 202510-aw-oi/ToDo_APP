@@ -29,6 +29,7 @@
             <span th:text="${todoForm.priority == 1 ? 'HIGH' : (todoForm.priority == 2 ? 'MEDIUM' : 'LOW')}">MEDIUM</span>
         </p>
         <p>期限日: <span th:text="${todoForm.dueDate}">2026-02-02</span></p>
+        <p>添付: <span th:text="${todoForm.attachmentUrl}">attachment</span></p>
         <p>詳細: <span th:text="${todoForm.detail}">detail</span></p>
     </div>
     <a th:href="@{/}">一覧へ戻る</a>

@@ -45,6 +45,9 @@ public class Todo {
     @Column
     private LocalDate dueDate;
 
+    @Column(length = 500)
+    private String attachmentUrl;
+
     @PrePersist
     public void prePersist() {
         LocalDateTime now = LocalDateTime.now();
@@ -138,5 +141,13 @@ public class Todo {
 
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public String getAttachmentUrl() {
+        return attachmentUrl;
+    }
+
+    public void setAttachmentUrl(String attachmentUrl) {
+        this.attachmentUrl = attachmentUrl;
     }
 }

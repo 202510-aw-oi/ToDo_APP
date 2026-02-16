@@ -14,7 +14,8 @@
             priority,
             created_at,
             updated_at,
-            due_date
+            due_date,
+            attachment_url
         FROM todos
         <trim prefix="WHERE" prefixOverrides="AND |OR ">
             <if test="type != null and type != ''">
