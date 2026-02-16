@@ -210,7 +210,13 @@
                 <td class="todo-detail" th:text="${todo.detail}" th:title="${todo.detail}">detail</td>
                 <td class="todo-attachment">
                     <a th:if="${todo.attachmentUrl != null and !#strings.isEmpty(todo.attachmentUrl)}"
-                        th:href="${todo.attachmentUrl}" target="_blank" rel="noopener">開く</a>
+                        th:href="${todo.attachmentUrl}" target="_blank" rel="noopener" aria-label="添付を開く" title="添付を開く">
+                        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M7 3h8l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="1.5" />
+                            <path d="M15 3v4h4" fill="none" stroke="currentColor" stroke-width="1.5" />
+                            <path d="M9 11h8M9 14h8M9 17h6" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        </svg>
+                    </a>
                 </td>
                 <td class="todo-edit">
                     <a th:href="@{/edit/{id}(id=${todo.id})}">編集</a>
