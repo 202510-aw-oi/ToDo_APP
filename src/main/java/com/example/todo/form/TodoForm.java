@@ -7,6 +7,7 @@ public class TodoForm {
     private String detail;
     private String description;
     private String type;
+    private String country;
     private Integer priority;
     private java.time.LocalDate dueDate;
     private String attachmentUrl;
@@ -57,6 +58,14 @@ public class TodoForm {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public Integer getPriority() {

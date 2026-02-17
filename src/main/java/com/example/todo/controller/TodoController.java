@@ -62,6 +62,7 @@ public class TodoController {
         form.setDetail(todo.getDetail());
         form.setDescription(todo.getDescription());
         form.setType(todo.getType());
+        form.setCountry(todo.getCountry());
         form.setPriority(todo.getPriority());
         form.setDueDate(todo.getDueDate());
         form.setAttachmentUrl(todo.getAttachmentUrl());

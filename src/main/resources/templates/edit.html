@@ -46,6 +46,19 @@
                 <td><input type="text" th:field="*{author}" /></td>
             </tr>
             <tr>
+                <th>国</th>
+                <td>
+                    <select th:field="*{country}">
+                        <option value="">-- 選択 --</option>
+                        <option value="日本">日本</option>
+                        <option value="韓国">韓国</option>
+                        <option value="アメリカ">アメリカ</option>
+                        <option value="ドイツ">ドイツ</option>
+                        <option value="タイ">タイ</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <th>タイトル</th>
                 <td><input type="text" th:field="*{title}" /></td>
             </tr>

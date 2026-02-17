@@ -77,6 +77,14 @@
             text-align: center;
         }
 
+        .todo-country {
+            width: 5em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+        }
+
         .todo-type select {
             width: 100%;
             text-align: center;
@@ -190,6 +198,7 @@
             <tr>
                 <th>☑</th>
                 <th>No</th>
+                <th>国</th>
                 <th>タイトル</th>
                 <th>登録者</th>
                 <th>作成日</th>
@@ -208,6 +217,7 @@
                     <input type="checkbox" th:name="${'todoCheck' + stat.count}" th:value="${todo.id}" />
                 </td>
                 <td th:text="${stat.count}">1</td>
+                <td class="todo-country" th:text="${todo.country}" th:title="${todo.country}">country</td>
                 <td class="todo-title" th:text="${todo.title}" th:title="${todo.title}">title</td>
                 <td class="todo-author" th:text="${todo.author}" th:title="${todo.author}">author</td>
                 <td class="todo-created-at" th:text="${#temporals.format(todo.createdAt, 'yyyy/MM/dd')}">2026/02/02</td>

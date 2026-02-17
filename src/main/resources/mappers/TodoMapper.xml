@@ -11,6 +11,7 @@
             detail,
             description,
             type,
+            country,
             priority,
             created_at,
             updated_at,

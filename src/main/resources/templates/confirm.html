@@ -24,6 +24,7 @@
 
     <div>
         <p>登録者: <span th:text="${todoForm.author}">author</span></p>
+        <p>国: <span th:text="${todoForm.country}">country</span></p>
         <p>タイトル: <span th:text="${todoForm.title}">title</span></p>
         <p>種類: <span th:text="${todoForm.type}">type</span></p>
         <p>優先度:
@@ -39,6 +40,7 @@
         <input type="hidden" th:field="*{author}" />
         <input type="hidden" th:field="*{title}" />
         <input type="hidden" th:field="*{type}" />
+        <input type="hidden" th:field="*{country}" />
         <input type="hidden" th:field="*{priority}" />
         <input type="hidden" th:field="*{dueDate}" />
         <input type="hidden" th:field="*{attachmentUrl}" />

@@ -25,6 +25,7 @@ public class TodoService {
         todo.setDetail(form.getDetail());
         todo.setDescription(form.getDescription());
         todo.setType(form.getType());
+        todo.setCountry(form.getCountry());
         todo.setPriority(form.getPriority());
         todo.setDueDate(form.getDueDate());
         todo.setAttachmentUrl(form.getAttachmentUrl());
@@ -70,6 +71,7 @@ public class TodoService {
         todo.setDetail(form.getDetail());
         todo.setDescription(form.getDescription());
         todo.setType(form.getType());
+        todo.setCountry(form.getCountry());
         todo.setPriority(form.getPriority());
         todo.setDueDate(form.getDueDate());
         todo.setAttachmentUrl(form.getAttachmentUrl());

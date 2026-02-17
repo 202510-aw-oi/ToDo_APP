@@ -33,6 +33,9 @@ public class Todo {
     @Column
     private String type;
 
+    @Column(length = 50)
+    private String country;
+
     @Column(nullable = false)
     private Integer priority = 2;
 
@@ -109,6 +112,14 @@ public class Todo {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public Integer getPriority() {
