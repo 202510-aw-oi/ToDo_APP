@@ -30,6 +30,13 @@
             font-size: 1.5rem;
         }
 
+        .page-header .jst-now {
+            margin-left: auto;
+            font-size: 0.95rem;
+            color: #333;
+            white-space: nowrap;
+        }
+
         .search-bar {
             display: flex;
             align-items: center;
@@ -158,6 +165,7 @@
             </svg>
         </a>
         <h1>ToDo一覧</h1>
+        <div class="jst-now">Today: <span th:text="${jstNow}">2026/02/17 12:00:00</span> (JST)</div>
     </header>
 
     <form class="search-bar" th:action="@{/}" method="get">

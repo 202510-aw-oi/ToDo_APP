@@ -3,6 +3,9 @@
 import com.example.todo.form.TodoForm;
 import com.example.todo.service.TodoService;
 import com.example.todo.entity.Todo;
+import java.time.ZonedDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class TodoController {
+    private static final ZoneId JST = ZoneId.of("Asia/Tokyo");
+    private static final DateTimeFormatter JST_FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     private final TodoService todoService;
 
     public TodoController(TodoService todoService) {
@@ -35,6 +40,7 @@ public class TodoController {
         model.addAttribute("priority", priority == null ? "" : priority);
         model.addAttribute("sort", sort == null ? "" : sort);
         model.addAttribute("count", count);
+        model.addAttribute("jstNow", ZonedDateTime.now(JST).format(JST_FORMATTER));
         model.addAttribute("isSearching",
                 (type != null && !type.trim().isEmpty())
                         || (priority != null && !priority.trim().isEmpty())
